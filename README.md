@@ -1,12 +1,39 @@
-# Multiplayer-Framework-Comparison
- Graduation-Thesis
+# Multiplayer Framework Comparison
+**Graduation Thesis**
 
-# Topic
+## Overview
 
-Based on the market shares, it is evident that we are now in the era of multiplayer games. There is high demand for them, as we can see in online insights there are millions of players playing online games every day. Implementing multiplayer games can be challenging depending on the type of game and the network architecture one chooses. There are different approaches to creating multiplayer games, especially when it comes to implementing multiplayer servers.
+### Topic
+We are currently in the golden age of multiplayer games, as evidenced by their significant market share and the millions of players engaging in online gaming daily. However, implementing multiplayer functionality is no small feat, as it presents challenges depending on the type of game and the chosen network architecture. There are various approaches to creating multiplayer games, particularly in the implementation of multiplayer servers.
 
-The server needs to be robust to match the game objects, player positions, stats, matchmaking, and others. There are lot of different library implementations out there for creating multiplayer games, with three of them being dominant choices. Since every game requirement is different, the topic of this thesis is finding advantages and disadvantages between those implementations in the form of criteria for these three dominant choices.
+A robust server is crucial for synchronizing game objects, player positions, stats, matchmaking, and more. Among the many libraries available for creating multiplayer games, three have emerged as dominant choices. Since game requirements vary, this thesis aims to identify the advantages and disadvantages of these three dominant frameworks by evaluating them based on specific criteria.
 
-This thesis aims to compare three approaches by using criteria like how many lines of code is needed to implement required functionalities, which approach has a steeper learning curve, how well they perform when it comes to standard multiplayer features, how many objects network can handle and others. To achieve this, this thesis will create three same MUD (multi-user dungeon) genre prototypes for each approach. First approach will be to write own client-server implementation. Second approach will be to use Photon library, and third approach will use Netcode for gameobjects multiplayer implementation.
+### Objective
+The goal of this thesis is to compare three different approaches to multiplayer game implementation using key criteria such as:
+- Lines of code required to implement essential functionalities
+- Learning curve associated with each approach
+- Performance in standard multiplayer features
+- Network capacity in handling game objects
+- And more...
 
-For monitoring and results this thesis will use inbuilt stats, and multiplayer profiler tool to fill the criteria list.
+To accomplish this, the thesis will develop three identical prototypes of a MUD (Multi-User Dungeon) game, each using a different approach:
+1. Custom client-server implementation
+2. Photon Engine
+3. Netcode for GameObjects
+
+For monitoring and evaluation, the thesis will utilize built-in statistics and the Multiplayer Network Profiler tool to assess the specified criteria.
+
+## Tools and Technologies
+
+### Development Tools
+- **Unity**: Version 2022.3.14f1 LTS (Client)
+- **.NET C# Console**: (Server)
+
+### Libraries
+- **WebSocket-Sharp**
+- **Photon Engine**
+- **Netcode for GameObjects**
+
+### Monitoring Tools
+- **Multiplayer Network Profiler**
+- **JetBrains dotTrace**
