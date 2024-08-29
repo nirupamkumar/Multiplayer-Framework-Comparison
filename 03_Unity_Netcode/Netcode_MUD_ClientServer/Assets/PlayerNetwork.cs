@@ -4,33 +4,50 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Globalization;
 
-public class PlayerNetwork : MonoBehaviour
+public class PlayerNetwork : NetworkBehaviour
 {
     public NetworkVariable<Vector3> Position = new NetworkVariable<Vector3>();
     public NetworkVariable<float> Health = new NetworkVariable<float>();
     public NetworkVariable<float> Attack = new NetworkVariable<float>();
     public NetworkVariable<float> Speed = new NetworkVariable<float>();
 
+    public GameObject playerMesh;
+    private UIManager uiManager;
+
+    private void Start()
+    {
+        uiManager = FindObjectOfType<UIManager>();
+        if (IsOwner)
+        {
+            Logger.LogPlayerAction(OwnerClientId, "Joined the game.");
+        }
+    }
+
     private void Update()
     {
+        if (IsOwner)
+        {
+            HandleInput();
+        }
+    }
+
+    private void HandleInput()
+    {
+        Vector3 direction = Vector3.zero;
+
         if (Input.GetKeyDown(KeyCode.W))
-        {
-            MovePlayerServerRpc(new Vector3(0, 1, 0));
-        }
-
+            direction = new Vector3(0, 1, 0);
         if (Input.GetKeyDown(KeyCode.S))
-        {
-            MovePlayerServerRpc(new Vector3(0, -1, 0));
-        }
-
+            direction = new Vector3(0, -1, 0);
         if (Input.GetKeyDown(KeyCode.A))
-        {
-            MovePlayerServerRpc(new Vector3(-1, 0, 0));
-        }
-
+            direction = new Vector3(-1, 0, 0);
         if (Input.GetKeyDown(KeyCode.D))
+            direction = new Vector3(1, 0, 0);
+
+        if (direction != Vector3.zero)
         {
-            MovePlayerServerRpc(new Vector3(1, 0, 0));
+            MovePlayerServerRpc(direction);
+            Logger.LogPlayerAction(OwnerClientId, $"Moved to {Position.Value}");
         }
     }
 
@@ -40,23 +57,33 @@ public class PlayerNetwork : MonoBehaviour
         Position.Value += direction;
     }
 
-    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
+    [ServerRpc]
+    public void SendMessageServerRpc(string message)
     {
-        transform.position = newPosition;
+        Logger.LogChatMessage(OwnerClientId, message); // Log chat message
+        AppendMessageClientRpc($"{OwnerClientId}: {message}");
     }
 
-    [ServerRpc]
-    public void UpdatePlayerStatsServerRpc(float healthChange, float attackChange, float speedChange)
+    [ClientRpc]
+    private void AppendMessageClientRpc(string message)
     {
-        Health.Value += healthChange;
-        Attack.Value += attackChange;
-        Speed.Value += speedChange;
+        if (uiManager != null)
+        {
+            uiManager.AppendChatMessage(message);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (IsOwner)
+        {
+            Logger.LogPlayerAction(OwnerClientId, "Left the game.");
+        }
     }
 
     private void OnEnable()
     {
         Position.OnValueChanged += OnPositionChanged;
-
         Health.OnValueChanged += OnHealthChanged;
         Attack.OnValueChanged += OnAttackChanged;
         Speed.OnValueChanged += OnSpeedChanged;
@@ -65,24 +92,40 @@ public class PlayerNetwork : MonoBehaviour
     private void OnDisable()
     {
         Position.OnValueChanged -= OnPositionChanged;
-
         Health.OnValueChanged -= OnHealthChanged;
         Attack.OnValueChanged -= OnAttackChanged;
         Speed.OnValueChanged -= OnSpeedChanged;
     }
 
+    private void OnPositionChanged(Vector3 oldPosition, Vector3 newPosition)
+    {
+        if (playerMesh != null)
+        {
+            playerMesh.transform.position = newPosition;
+        }
+    }
+
     private void OnHealthChanged(float oldHealth, float newHealth)
     {
-        // Update UI or other logic here
+        if (IsOwner)
+        {
+            uiManager.UpdateStatsUI(newHealth, Attack.Value, Speed.Value);
+        }
     }
 
     private void OnAttackChanged(float oldAttack, float newAttack)
     {
-        // Update UI or other logic here
+        if (IsOwner)
+        {
+            uiManager.UpdateStatsUI(Health.Value, newAttack, Speed.Value);
+        }
     }
 
     private void OnSpeedChanged(float oldSpeed, float newSpeed)
     {
-        // Update UI or other logic here
+        if (IsOwner)
+        {
+            uiManager.UpdateStatsUI(Health.Value, Attack.Value, newSpeed);
+        }
     }
 }
