@@ -202,6 +202,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32590520}
   m_CullTransparentMesh: 1
+--- !u!1 &32709455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 32709457}
+  - component: {fileID: 32709456}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &32709456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32709455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6c68955b87d724490662950d1e5c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectButton: {fileID: 39121111}
+  nameField: {fileID: 1329128139}
+  chatInputField: {fileID: 1363828031}
+  chatText: {fileID: 221081439}
+  sendButton: {fileID: 1856765154}
+  healthText: {fileID: 230402661}
+  attackText: {fileID: 32590522}
+  speedText: {fileID: 1522275625}
+--- !u!4 &32709457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32709455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &39121109
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 963194229}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: JoinChatroom
         m_Mode: 5
@@ -885,7 +937,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5409298187635634715, guid: e6993f55a53a5e148befb7318a1dd111, type: 3}
-  worldData: 
+  pathPrefab: {fileID: 1754638628755855830, guid: 1691952a12de78a41adf43d3d8983b93, type: 3}
+  wallPrefab: {fileID: 3589873003534414370, guid: c2594fe41d0c56448af3093ddda1f8f9, type: 3}
+  holePrefab: {fileID: 6364264378739909320, guid: 0d3e92bd2862e6942ab26a2f2cd3f3d2, type: 3}
+  healthPrefab: {fileID: 1754638628755855830, guid: 8648313d458a07b4ab93243df34dfede, type: 3}
+  attackPrefab: {fileID: 1754638628755855830, guid: 9f48a22402578ee4fa58d8da55c0e7f9, type: 3}
+  speedPrefab: {fileID: 1754638628755855830, guid: 3952f8134684cf14babb07502cef6f3d, type: 3}
+  worldData: 000000000100000002000000030000000400000005000000
 --- !u!4 &829007158
 Transform:
   m_ObjectHideFlags: 0
@@ -912,8 +970,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
-  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -995,45 +1051,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fdb1cfa298e66646b842dde21f84226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  removeOnConnect:
-  - {fileID: 39121109}
-  - {fileID: 1329128137}
-  activateOnConnect:
-  - {fileID: 1363828029}
-  - {fileID: 1856765152}
-  - {fileID: 221081437}
-  - {fileID: 1131561780}
-  nameField: {fileID: 1329128139}
-  textField: {fileID: 1363828031}
-  gameManager: {fileID: 963194230}
-  textMessage: {fileID: 221081439}
-  worldBuilt: 0
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 400b4938c94ecfc44b9fa2c45aea7964, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
-  worldData: 
 --- !u!1 &1099447704
 GameObject:
   m_ObjectHideFlags: 0
@@ -2049,7 +2066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 963194229}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: SendText
         m_Mode: 1
@@ -2209,7 +2226,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 829007158}
   - {fileID: 641809495}
+  - {fileID: 829007158}
+  - {fileID: 32709457}
   - {fileID: 2134863605}
   - {fileID: 1642203147}
