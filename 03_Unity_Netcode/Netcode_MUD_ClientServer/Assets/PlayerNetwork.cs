@@ -17,6 +17,11 @@ public class PlayerNetwork : NetworkBehaviour
     private void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
+        if (uiManager == null)
+        {
+            Debug.LogError("UIManager not found in the scene.");
+        }
+
         if (IsOwner)
         {
             Logger.LogPlayerAction(OwnerClientId, "Joined the game.");
@@ -55,6 +60,26 @@ public class PlayerNetwork : NetworkBehaviour
     private void MovePlayerServerRpc(Vector3 direction)
     {
         Position.Value += direction;
+        Logger.LogPlayerAction(OwnerClientId, $"Moved to new position: {Position.Value}");
+    }
+
+    [ServerRpc]
+    public void PickupItemServerRpc(string itemType)
+    {
+        Logger.LogPlayerAction(OwnerClientId, $"Picked up {itemType}");
+        // Update stats based on item type
+        switch (itemType)
+        {
+            case "Health":
+                Health.Value += 1; // Example value
+                break;
+            case "Attack":
+                Attack.Value += 1; // Example value
+                break;
+            case "Speed":
+                Speed.Value += 1; // Example value
+                break;
+        }
     }
 
     [ServerRpc]
@@ -70,6 +95,10 @@ public class PlayerNetwork : NetworkBehaviour
         if (uiManager != null)
         {
             uiManager.AppendChatMessage(message);
+        }
+        else
+        {
+            Debug.LogError("UIManager is not set or has been destroyed.");
         }
     }
 
