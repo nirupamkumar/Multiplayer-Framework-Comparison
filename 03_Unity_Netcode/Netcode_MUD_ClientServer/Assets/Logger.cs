@@ -26,9 +26,16 @@ public static class Logger
 
     public static void Log(string message)
     {
-        using (StreamWriter writer = new StreamWriter(logFilePath, true))
+        try
         {
-            writer.WriteLine($"{DateTime.Now}: {message}");
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine($"{DateTime.Now}: {message}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to write log: {ex.Message}");
         }
     }
 
