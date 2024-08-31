@@ -5,6 +5,7 @@ using System.IO;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +27,9 @@ public class GameManager : MonoBehaviour
         if (NetworkManager.Singleton.IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
             CreateWorld();
+            Logger.Log("Server has started and is now listening for clients.");
         }
     }
 
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < rows; j++)
             {
                 Vector3 pos = new Vector3(i, j, 0);
+                Debug.Log($"Instantiating object at position {pos} with type {worldGrid[i, j]}");
+
                 switch (worldGrid[i, j])
                 {
                     case (int)MapLegend.Tile:
@@ -66,15 +71,37 @@ public class GameManager : MonoBehaviour
 
     private void OnClientConnected(ulong clientId)
     {
-        var playerInstance = Instantiate(playerPrefab);
+        Vector3 randomPosition = GetRandomSpawnPosition();
+        Debug.Log($"Spawning player {clientId} at position {randomPosition}");
+        var playerInstance = Instantiate(playerPrefab, randomPosition, Quaternion.identity);
         playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+        Logger.Log($"Client {clientId} connected to the server at position {randomPosition}.");
+    }
+
+
+    private Vector3 GetRandomSpawnPosition()
+    {
+        // Example logic to get a random spawn position within the world grid
+        // Make sure you adjust this logic based on your world dimensions
+        int randomX = Random.Range(0, columns);
+        int randomY = Random.Range(0, rows);
+
+        // Adjust z-axis or y-axis based on your 2D/3D setup
+        return new Vector3(randomX, randomY, 0);
+    }
+
+    private void OnClientDisconnected(ulong clientId)
+    {
+        Logger.Log($"Client {clientId} disconnected from the server.");
     }
 
     private void OnDestroy()
     {
-        if (NetworkManager.Singleton.IsServer)
+        if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnected;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnected;
+            Logger.Log("Server has stopped.");
         }
     }
 
