@@ -231,6 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6c68955b87d724490662950d1e5c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectPanel: {fileID: 1122081450}
+  chatPanel: {fileID: 1462064014}
+  statsPanel: {fileID: 1131561780}
   connectButton: {fileID: 39121111}
   nameField: {fileID: 1329128139}
   chatInputField: {fileID: 1363828031}
@@ -655,6 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d775a321d4dce746a425040a4488ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 32709456}
 --- !u!1 &653587238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1363828030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1670,7 +1674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1462064015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2001,7 +2005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1856765153
 RectTransform:
   m_ObjectHideFlags: 0
