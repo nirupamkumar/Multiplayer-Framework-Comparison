@@ -1,0 +1,63 @@
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\bin\Debug\ChatServer.exe.config
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\bin\Debug\ChatServer.exe
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\bin\Debug\ChatServer.pdb
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\bin\Debug\websocket-sharp.dll
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\obj\Debug\ChatServer.exe
+C:\Users\JuraPC\source\repos\Workshops\ChatServer\obj\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\bin\Debug\ChatServer.exe.config
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\bin\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\bin\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\bin\Debug\websocket-sharp.dll
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\obj\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Workshops\ChatServer\obj\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\ChatServer\bin\Debug\ChatServer.exe.config
+C:\Users\Mravunac\Desktop\ChatServer\bin\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\ChatServer\bin\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\ChatServer\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\Mravunac\Desktop\ChatServer\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Mravunac\Desktop\ChatServer\obj\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\ChatServer\obj\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Server\bin\Debug\ChatServer.exe.config
+C:\Users\Mravunac\Desktop\Server\bin\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Server\bin\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Server\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\Mravunac\Desktop\Server\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Mravunac\Desktop\Server\obj\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Server\obj\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.exe.config
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.exe.config
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\bin\Debug\ChatServer.pdb
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csprojAssemblyReference.cache
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.CopyComplete
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.exe
+C:\Users\Mravunac\Desktop\Faks\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.pdb
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.AssemblyReference.cache
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.SuggestedBindingRedirects.cache
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\ChatServer.csproj.CopyComplete
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\bin\Debug\MUDServer.exe.config
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\bin\Debug\MUDServer.exe
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\bin\Debug\MUDServer.pdb
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\MUDServer.exe
+E:\Repos\[MP]_MatijaMravunac\MUD\Server\obj\Debug\MUDServer.pdb
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\bin\Debug\MUDServer.exe.config
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\bin\Debug\MUDServer.exe
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\bin\Debug\MUDServer.pdb
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.AssemblyReference.cache
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.SuggestedBindingRedirects.cache
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.CopyComplete
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\MUDServer.exe
+D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\MUDServer.pdb
