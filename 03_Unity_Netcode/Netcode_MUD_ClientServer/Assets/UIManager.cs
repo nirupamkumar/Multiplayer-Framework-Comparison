@@ -6,6 +6,11 @@ using Unity.Netcode;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("UI Panels")]
+    public GameObject connectPanel;  // Panel containing the name field and connect button
+    public GameObject chatPanel;     // Panel containing chat input and chat display
+    public GameObject statsPanel;    // Panel containing player stats like health, attack, and speed
+
     [Header("UI Elements")]
     public Button connectButton;
     public InputField nameField;
@@ -19,19 +24,33 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         // Assign button click events
-        connectButton.onClick.AddListener(OnConnectButtonClicked);
         sendButton.onClick.AddListener(OnSendButtonClicked);
 
         // Disable chat and stats initially
-        ToggleChatUI(false);
-        ToggleStatsUI(false);
+        chatPanel.SetActive(false);
+        statsPanel.SetActive(false);
+    }
+
+    public void HideUI()
+    {
+        connectPanel.SetActive(false);
+        chatPanel.SetActive(false);
+        statsPanel.SetActive(false);
+    }
+
+    public void TriggerConnect()
+    {
+        connectButton.onClick.Invoke();
+        connectPanel.SetActive(false);
+        chatPanel.SetActive(true);
+        statsPanel.SetActive(true);
     }
 
     private void OnConnectButtonClicked()
     {
         // Attempt to start as client
-        NetworkManager.Singleton.StartClient();
-        ToggleChatUI(true); // Enable chat UI on connect
+        //NetworkManager.Singleton.StartClient();
+        //ToggleChatUI(true); // Enable chat UI on connect
     }
 
     private void OnSendButtonClicked()
@@ -54,20 +73,6 @@ public class UIManager : MonoBehaviour
                 localPlayer.GetComponent<PlayerNetwork>().SendMessageServerRpc(message);
             }
         }
-    }
-
-    private void ToggleChatUI(bool enable)
-    {
-        chatInputField.gameObject.SetActive(enable);
-        sendButton.gameObject.SetActive(enable);
-        chatText.gameObject.SetActive(enable);
-    }
-
-    private void ToggleStatsUI(bool enable)
-    {
-        healthText.gameObject.SetActive(enable);
-        attackText.gameObject.SetActive(enable);
-        speedText.gameObject.SetActive(enable);
     }
 
     public void UpdateStatsUI(float health, float attack, float speed)
