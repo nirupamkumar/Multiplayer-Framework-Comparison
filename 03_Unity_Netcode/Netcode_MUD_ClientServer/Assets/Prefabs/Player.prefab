@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7737762222150951641}
   - component: {fileID: 6442892690413915800}
   - component: {fileID: -922317001870375499}
+  - component: {fileID: -9174528101870366910}
   - component: {fileID: 5430870338244323780}
   m_Layer: 0
   m_Name: Player
@@ -106,6 +107,36 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-9174528101870366910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5409298187635634715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 0
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  UseQuaternionSynchronization: 0
+  UseQuaternionCompression: 0
+  UseHalfFloatPrecision: 0
+  InLocalSpace: 0
+  Interpolate: 1
+  SlerpPosition: 0
 --- !u!114 &5430870338244323780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,8 +152,9 @@ MonoBehaviour:
   Position:
     m_InternalValue: {x: 0, y: 0, z: 0}
   Health:
-    m_InternalValue: 0
+    m_InternalValue: 50
   Attack:
-    m_InternalValue: 0
+    m_InternalValue: 10
   Speed:
-    m_InternalValue: 0
+    m_InternalValue: 5
+  playerMesh: {fileID: 5409298187635634715}
