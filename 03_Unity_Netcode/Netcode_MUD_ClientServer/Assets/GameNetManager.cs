@@ -43,8 +43,8 @@ public class GameNetManager : MonoBehaviour
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
 
             // Use the buttonHeight variable instead of repeating GUILayout.Height(50)
-            if (GUILayout.Button("Start Host", buttonStyle, buttonHeight))
-                StartHost();
+            //if (GUILayout.Button("Start Host", buttonStyle, buttonHeight))
+            //    StartHost();
             if (GUILayout.Button("Start Client", buttonStyle, buttonHeight))
                 StartClient();
             if (GUILayout.Button("Start Server", buttonStyle, buttonHeight))
