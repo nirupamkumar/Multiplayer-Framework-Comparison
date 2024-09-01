@@ -6,7 +6,7 @@ using UnityEngine;
 
 public static class Logger
 {
-    private static string logFilePath = "Logs/NetcodeGameLogs.txt"; // Path to the log file
+    private static string logFilePath = "Logs/Netcode_GameLogs.txt"; // Path to the log file
 
     static Logger()
     {
