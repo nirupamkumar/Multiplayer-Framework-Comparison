@@ -17,25 +17,66 @@ public class GameManager : MonoBehaviour
     public GameObject attackPrefab;
     public GameObject speedPrefab;
 
-    public int[] worldData; // Predefined world data array
-    private int rows = 18;
-    private int columns = 13;
-    private int[,] worldGrid;
+    public int[] worldData = new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,
+                                       1,0,0,0,0,0,0,0,0,0,0,0,1,
+                                       1,0,0,0,2,2,2,0,3,0,2,0,1,
+                                       1,0,0,0,0,0,0,0,0,0,0,0,1,
+                                       1,0,0,2,2,0,0,0,2,0,0,0,1,
+                                       1,0,0,0,0,0,0,0,0,0,0,0,1,
+                                       1,1,1,1,1,1,0,1,1,1,1,1,1,
+                                       1,0,0,0,0,0,0,0,4,0,0,0,1,
+                                       1,0,0,0,2,2,2,0,0,0,2,0,1,
+                                       1,0,0,0,0,0,0,0,0,0,0,0,1,
+                                       1,0,0,2,2,0,2,0,2,0,0,0,1,
+                                       1,0,0,0,0,0,2,2,2,2,2,2,1,
+                                       1,0,1,1,1,1,1,1,1,1,1,1,1,
+                                       1,0,0,0,2,0,0,0,0,0,0,0,1,
+                                       1,0,0,0,0,0,0,0,0,0,2,0,1,
+                                       1,2,2,0,0,0,0,0,0,2,0,5,1,
+                                       1,2,2,2,2,0,2,0,2,0,0,0,1,
+                                       1,1,1,1,1,1,1,1,1,1,1,1,1};
+
+    public int rows = 18;
+    public int columns = 13;
+    public int[,] worldGrid;
 
     private void Start()
     {
+        Debug.Log("GameManager Start method called.");
+
+        NetworkManager.Singleton.OnServerStarted += OnServerStarted;
+    }
+
+    private void OnServerStarted()
+    {
         if (NetworkManager.Singleton.IsServer)
         {
+            Debug.Log("Server started, initializing GameManager.");
             NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
             NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
             CreateWorld();
             Logger.Log("Server has started and is now listening for clients.");
+        }
+        else
+        {
+            Debug.LogWarning("OnServerStarted called but not running as server.");
         }
     }
 
     private void CreateWorld()
     {
         worldGrid = Transform1DArrayTo2DArray(worldData, columns, rows);
+
+        // Check if worldGrid is properly initialized
+        if (worldGrid == null)
+        {
+            Debug.LogError("worldGrid is not initialized properly. Exiting CreateWorld.");
+            return;
+        }
+        else
+        {
+            Debug.Log("worldGrid successfully initialized.");
+        }
 
         for (int i = 0; i < columns; i++)
         {
@@ -44,26 +85,45 @@ public class GameManager : MonoBehaviour
                 Vector3 pos = new Vector3(i, j, 0);
                 Debug.Log($"Instantiating object at position {pos} with type {worldGrid[i, j]}");
 
+                GameObject prefabToInstantiate = null;
+
                 switch (worldGrid[i, j])
                 {
                     case (int)MapLegend.Tile:
-                        Instantiate(pathPrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = pathPrefab;
                         break;
                     case (int)MapLegend.Wall:
-                        Instantiate(wallPrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = wallPrefab;
                         break;
                     case (int)MapLegend.Hole:
-                        Instantiate(holePrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = holePrefab;
                         break;
                     case (int)MapLegend.Health:
-                        Instantiate(healthPrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = healthPrefab;
                         break;
                     case (int)MapLegend.Attack:
-                        Instantiate(attackPrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = attackPrefab;
                         break;
                     case (int)MapLegend.Speed:
-                        Instantiate(speedPrefab, pos, Quaternion.identity);
+                        prefabToInstantiate = speedPrefab;
                         break;
+                    default:
+                        Debug.LogWarning($"Unrecognized type {worldGrid[i, j]} at position {pos}");
+                        break;
+                }
+
+                if (prefabToInstantiate != null)
+                {
+                    GameObject instantiatedObj = Instantiate(prefabToInstantiate, pos, Quaternion.identity);
+                    var networkObject = instantiatedObj.GetComponent<NetworkObject>();
+                    if (networkObject != null)
+                    {
+                        networkObject.Spawn(); // NetworkObject.Spawn() ensures the object is visible on clients
+                    }
+                    else
+                    {
+                        Debug.LogError("Prefab does not have a NetworkObject component.");
+                    }
                 }
             }
         }
@@ -71,28 +131,29 @@ public class GameManager : MonoBehaviour
 
     private void OnClientConnected(ulong clientId)
     {
+        Logger.Log($"Client {clientId} connected to the server.");
+
         Vector3 randomPosition = GetRandomSpawnPosition();
-        Debug.Log($"Spawning player {clientId} at position {randomPosition}");
-        var playerInstance = Instantiate(playerPrefab, randomPosition, Quaternion.identity);
-        playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId, true);
+        GameObject playerInstance = Instantiate(playerPrefab, randomPosition, Quaternion.identity);
+        playerInstance.GetComponent<NetworkObject>().SpawnAsPlayerObject(clientId);
         Logger.Log($"Client {clientId} connected to the server at position {randomPosition}.");
-    }
-
-
-    private Vector3 GetRandomSpawnPosition()
-    {
-        // Example logic to get a random spawn position within the world grid
-        // Make sure you adjust this logic based on your world dimensions
-        int randomX = Random.Range(0, columns);
-        int randomY = Random.Range(0, rows);
-
-        // Adjust z-axis or y-axis based on your 2D/3D setup
-        return new Vector3(randomX, randomY, 0);
     }
 
     private void OnClientDisconnected(ulong clientId)
     {
         Logger.Log($"Client {clientId} disconnected from the server.");
+    }
+
+    public Vector3 GetRandomSpawnPosition()
+    {
+        int randomX, randomY;
+        do
+        {
+            randomX = Random.Range(0, columns);
+            randomY = Random.Range(0, rows);
+        } while (worldGrid[randomX, randomY] != (int)MapLegend.Tile); // Ensure spawning only on tiles
+
+        return new Vector3(randomX, randomY, 0);
     }
 
     private void OnDestroy()
@@ -107,6 +168,18 @@ public class GameManager : MonoBehaviour
 
     public static int[,] Transform1DArrayTo2DArray(int[] inputArray, int columns, int rows)
     {
+        if (inputArray == null || inputArray.Length == 0)
+        {
+            Debug.LogError("Input array for Transform1DArrayTo2DArray is null or empty.");
+            return null;
+        }
+
+        if (columns <= 0 || rows <= 0)
+        {
+            Debug.LogError("Invalid dimensions for Transform1DArrayTo2DArray. Columns and rows must be greater than zero.");
+            return null;
+        }
+
         var resultArray = new int[columns, rows];
         for (int i = 0; i < rows; i++)
         {
@@ -119,11 +192,12 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    Debug.LogError("Index out of bounds while converting 1D to 2D array.");
                     resultArray[i, j] = 0;
                 }
             }
         }
-
+        Debug.Log("Transform1DArrayTo2DArray completed successfully.");
         return resultArray;
     }
 }
@@ -137,3 +211,4 @@ public enum MapLegend
     Health = 4,
     Speed = 5
 }
+
