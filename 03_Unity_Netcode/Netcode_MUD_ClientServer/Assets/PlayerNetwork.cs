@@ -24,20 +24,56 @@ public class PlayerNetwork : NetworkBehaviour
             Debug.LogError("UIManager not found in the scene.");
         }
 
-        if (gameManager == null)
+        if (gameManager != null)
         {
-            Debug.LogError("GameManager not found in the scene.");
+            gameManager.OnWorldInitialized += OnWorldInitialized;
+            Debug.Log("GameManager successfully assigned.");
+
         }
         else
         {
-            Debug.Log("GameManager successfully assigned.");
+            Debug.LogError("GameManager not found in the scene.");
         }
+
+        StartCoroutine(WaitForWorldGridInitialization());
 
         if (IsOwner)
         {
             Logger.LogPlayerAction(OwnerClientId, "Joined the game.");
             UpdateUI();
         }
+    }
+
+    private IEnumerator WaitForWorldGridInitialization()
+    {
+        float timeout = 5.0f; // Set a 5-second timeout for the wait
+        float timer = 0f;
+
+        while (gameManager == null || gameManager.worldGrid == null)
+        {
+            gameManager = FindObjectOfType<GameManager>(); // Try to find GameManager again
+
+            if (gameManager != null && gameManager.worldGrid != null)
+            {
+                Debug.Log("GameManager and worldGrid successfully initialized in PlayerNetwork.");
+                break;
+            }
+
+            timer += Time.deltaTime;
+            if (timer > timeout)
+            {
+                Debug.LogError("Timeout waiting for gameManager and worldGrid initialization.");
+                yield break; // Exit the coroutine if the time exceeds the timeout
+            }
+
+            Debug.Log("Waiting for gameManager and worldGrid to initialize...");
+            yield return null; // Wait for the next frame
+        }
+    }
+
+    private void OnWorldInitialized()
+    {
+        Debug.Log("GameManager has initialized worldGrid.");
     }
 
     private void Update()
@@ -76,7 +112,6 @@ public class PlayerNetwork : NetworkBehaviour
 
         if (direction != Vector3.zero)
         {
-            Debug.Log($"Attempting to move player in direction: {direction}");
             AttemptMove(direction);
             RotatePlayer(targetRotation);
             Logger.LogPlayerAction(OwnerClientId, $"Moved to {Position.Value}");
@@ -88,6 +123,7 @@ public class PlayerNetwork : NetworkBehaviour
         if (playerMesh != null)
         {
             playerMesh.transform.rotation = targetRotation;
+            SyncRotationServerRpc(targetRotation);
         }
         else
         {
@@ -95,11 +131,26 @@ public class PlayerNetwork : NetworkBehaviour
         }
     }
 
+    [ServerRpc]
+    private void SyncRotationServerRpc(Quaternion targetRotation)
+    {
+        SyncRotationClientRpc(targetRotation);
+    }
+
+    [ClientRpc]
+    private void SyncRotationClientRpc(Quaternion targetRotation)
+    {
+        if (!IsOwner)
+        {
+            playerMesh.transform.rotation = targetRotation;
+        }
+    }
+
     private void AttemptMove(Vector3 direction)
     {
-        if (gameManager == null)
+        if (gameManager == null || gameManager.worldGrid == null)
         {
-            Debug.LogError("GameManager is null. Cannot move player.");
+            Debug.LogError("GameManager or worldGrid is null. Cannot move player.");
             return;
         }
 
@@ -107,7 +158,6 @@ public class PlayerNetwork : NetworkBehaviour
         if (CanMoveTo(targetPosition))
         {
             MovePlayerServerRpc(direction);
-            Logger.LogPlayerAction(OwnerClientId, $"Moved to {Position.Value}");
         }
         else
         {
@@ -117,13 +167,7 @@ public class PlayerNetwork : NetworkBehaviour
 
     private bool CanMoveTo(Vector3 targetPosition)
     {
-        if (gameManager == null)
-        {
-            Debug.LogError("GameManager is null. Cannot check movement.");
-            return false;
-        }
-
-        if (gameManager.worldGrid == null)
+        if (gameManager == null || gameManager.worldGrid == null)
         {
             Debug.LogError("worldGrid is null in GameManager. Cannot check movement.");
             return false;
@@ -138,41 +182,23 @@ public class PlayerNetwork : NetworkBehaviour
             return false;
         }
 
-        // Added Debug Statement
-        Debug.Log($"Attempting to access gameManager.worldGrid at position [{x}, {y}].");
-
-        // Ensure worldGrid is correctly indexed
-        int tileType;
-        try
-        {
-            tileType = gameManager.worldGrid[x, y];
-        }
-        catch (System.IndexOutOfRangeException e)
-        {
-            Debug.LogError($"IndexOutOfRangeException caught: {e.Message}");
-            return false;
-        }
-        catch (System.NullReferenceException e)
-        {
-            Debug.LogError($"NullReferenceException caught: {e.Message}");
-            return false;
-        }
-
-        Debug.Log($"Checking movement to tile type: {tileType} at position: {x}, {y}.");
-
+        int tileType = gameManager.worldGrid[x, y];
         return tileType == (int)MapLegend.Tile || tileType == (int)MapLegend.Health ||
                tileType == (int)MapLegend.Attack || tileType == (int)MapLegend.Speed;
     }
-
 
     [ServerRpc]
     private void MovePlayerServerRpc(Vector3 direction)
     {
         Position.Value += direction;
-        playerMesh.transform.position = Position.Value;
-        Logger.LogPlayerAction(OwnerClientId, $"Moved to new position: {Position.Value}");
+        MovePlayerClientRpc(Position.Value);
     }
 
+    [ClientRpc]
+    private void MovePlayerClientRpc(Vector3 newPosition)
+    {
+        playerMesh.transform.position = newPosition;
+    }
 
     [ServerRpc]
     public void PickupItemServerRpc(string itemType)
@@ -230,6 +256,11 @@ public class PlayerNetwork : NetworkBehaviour
         if (IsOwner)
         {
             Logger.LogPlayerAction(OwnerClientId, "Left the game.");
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.OnWorldInitialized -= OnWorldInitialized;
         }
     }
 
