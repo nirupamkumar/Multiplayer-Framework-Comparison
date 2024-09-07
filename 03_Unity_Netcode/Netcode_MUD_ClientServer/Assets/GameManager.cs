@@ -40,10 +40,11 @@ public class GameManager : MonoBehaviour
     public int columns = 13;
     public int[,] worldGrid;
 
+    public event Action OnWorldInitialized;
+
     private void Start()
     {
         Debug.Log("GameManager Start method called.");
-
         NetworkManager.Singleton.OnServerStarted += OnServerStarted;
     }
 
@@ -65,17 +66,19 @@ public class GameManager : MonoBehaviour
 
     private void CreateWorld()
     {
+        Debug.Log("GameManager: Initializing worldGrid...");
+
+        // Assuming worldData is already set, transform it to a 2D array
         worldGrid = Transform1DArrayTo2DArray(worldData, columns, rows);
 
-        // Check if worldGrid is properly initialized
-        if (worldGrid == null)
+        if (worldGrid != null)
         {
-            Debug.LogError("worldGrid is not initialized properly. Exiting CreateWorld.");
-            return;
+            Debug.Log("GameManager: worldGrid successfully initialized.");
+            OnWorldInitialized?.Invoke(); // Trigger the event
         }
         else
         {
-            Debug.Log("worldGrid successfully initialized.");
+            Debug.LogError("GameManager: worldGrid failed to initialize.");
         }
 
         for (int i = 0; i < columns; i++)
