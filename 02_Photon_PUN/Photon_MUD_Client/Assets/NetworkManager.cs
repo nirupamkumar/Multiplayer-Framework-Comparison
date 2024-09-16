@@ -8,23 +8,40 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public InputField nameField;
-    public GameObject[] removeOnConnect;
-    public GameObject[] activateOnConnect;
+    public Button connectButton;
+
+    public GameObject connectUI;
+    public GameObject chatUI;
+    public GameObject statsUI;
+
+    private static int playerCount = 1;
 
     void Start()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        connectButton.onClick.AddListener(JoinChatroom);
+
+        // Ensure the initial UI states are correct
+        connectUI.SetActive(true);
+        chatUI.SetActive(false);
+        statsUI.SetActive(false);
     }
 
     public void JoinChatroom()
     {
-        PhotonNetwork.NickName = nameField.text;
+        string playerName = nameField.text;
+
+        if (string.IsNullOrEmpty(playerName))
+        {
+            // Assign a default name if none is provided
+            playerName = "Player" + playerCount;
+            playerCount++;
+        }
+
+        PhotonNetwork.NickName = playerName;
         PhotonNetwork.ConnectUsingSettings();
 
-        foreach (var go in removeOnConnect)
-        {
-            go.SetActive(false);
-        }
+        connectUI.SetActive(false);
     }
 
     public override void OnConnectedToMaster()
@@ -34,9 +51,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        foreach (var go in activateOnConnect)
-        {
-            go.SetActive(true);
-        }
+        chatUI.SetActive(true);
+        statsUI.SetActive(true);
+    }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        // Reactivate the Connect UI if the connection fails
+        connectUI.SetActive(true);
+
+        chatUI.SetActive(false);
+        statsUI.SetActive(false);
     }
 }
