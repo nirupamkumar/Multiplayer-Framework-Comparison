@@ -14,7 +14,7 @@ public class WorldManager : MonoBehaviourPun
 
     private int rows = 18;
     private int columns = 13;
-    public int[,] worldGrid;
+    public static int[,] worldGrid;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class WorldManager : MonoBehaviourPun
     {
         int[] data = new int[]
         {
-           // World data array
+            // World data array
             1,1,1,1,1,1,1,1,1,1,1,1,1,
             1,0,0,0,0,0,0,0,0,0,0,0,1,
             1,0,0,0,2,2,2,0,3,0,2,0,1,
@@ -91,13 +91,30 @@ public class WorldManager : MonoBehaviourPun
         }
     }
 
-    public enum MapLegend
+    // Method to check the tile type at a given position
+    public static MapLegend GetTileTypeAtPosition(Vector3 position)
     {
-        Tile = 0,
-        Wall = 1,
-        Hole = 2,
-        Attack = 3,
-        Health = 4,
-        Speed = 5
+        int x = Mathf.RoundToInt(position.x);
+        int y = Mathf.RoundToInt(position.y);
+
+        if (x >= 0 && x < worldGrid.GetLength(0) && y >= 0 && y < worldGrid.GetLength(1))
+        {
+            return (MapLegend)worldGrid[x, y];
+        }
+        else
+        {
+            // Return Wall as default for out-of-bounds
+            return MapLegend.Wall; 
+        }
     }
+}
+
+public enum MapLegend
+{
+    Tile = 0,
+    Wall = 1,
+    Hole = 2,
+    Attack = 3,
+    Health = 4,
+    Speed = 5
 }
