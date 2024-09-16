@@ -6,31 +6,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public GameObject border;
-    public GameObject path;
-    public GameObject hole;
-    public GameObject health;
-    public GameObject attack;
-    public GameObject speed;
     public GameObject playerPrefab;
-
     public PlayerController localPlayer;
 
     public Text healthText;
     public Text attackText;
     public Text speedText;
-
-    private int rows = 18;
-    private int columns = 13;
-    public int[,] worldGrid;
-
-    private void Start()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            CreateWorld();
-        }
-    }
 
     public override void OnJoinedRoom()
     {
@@ -55,22 +36,43 @@ public class GameManager : MonoBehaviourPunCallbacks
         speedText.text = $"Speed: {localPlayer.speed}";
     }
 
-    public void CreateWorld()
-    {
-        PhotonNetwork.InstantiateRoomObject("WorldManager", Vector3.zero, Quaternion.identity);
-    }
-
     void SpawnPlayer()
     {
-        Vector3 spawnPosition = GetRandomSpawnPosition();
+        Vector3 spawnPosition = GetRandomValidSpawnPosition();
         GameObject playerObject = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
         localPlayer = playerObject.GetComponent<PlayerController>();
     }
 
-    Vector3 GetRandomSpawnPosition()
+    Vector3 GetRandomValidSpawnPosition()
     {
-        // Implement logic to get a random spawn position on the map
-        // For now, return a default position
-        return new Vector3(1, 1, 0);
+        // Collect all valid spawn positions
+        var validPositions = new System.Collections.Generic.List<Vector3>();
+
+        int columns = WorldManager.worldGrid.GetLength(0);
+        int rows = WorldManager.worldGrid.GetLength(1);
+
+        for (int x = 0; x < columns; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                MapLegend tileType = (MapLegend)WorldManager.worldGrid[x, y];
+                if (tileType == MapLegend.Tile)
+                {
+                    validPositions.Add(new Vector3(x, y, 0));
+                }
+            }
+        }
+
+        // Choose a random position from the list
+        if (validPositions.Count > 0)
+        {
+            int index = Random.Range(0, validPositions.Count);
+            return validPositions[index];
+        }
+        else
+        {
+            // Fallback position if no valid positions found
+            return Vector3.zero;
+        }
     }
 }
