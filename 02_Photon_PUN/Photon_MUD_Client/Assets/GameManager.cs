@@ -15,10 +15,32 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        // Initiate world creation
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameObject worldManagerObject = GameObject.Find("WorldManager");
+            if (worldManagerObject != null)
+            {
+                WorldManager worldManager = worldManagerObject.GetComponent<WorldManager>();
+                worldManager.photonView.RPC("RPC_CreateWorld", RpcTarget.AllBuffered);
+            }
+            else
+            {
+                Debug.LogError("WorldManager object not found in the scene.");
+            }
+        }
+
+        // Spawn the player
         if (!localPlayer)
         {
             SpawnPlayer();
         }
+        else
+        {
+            Debug.LogError("Player not found");
+        }
+
+        Debug.Log("Joined room.");
     }
 
     void Update()
@@ -39,6 +61,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void SpawnPlayer()
     {
         Vector3 spawnPosition = GetRandomValidSpawnPosition();
+        Debug.Log("Spawning player at position: " + spawnPosition);
         GameObject playerObject = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition, Quaternion.identity);
         localPlayer = playerObject.GetComponent<PlayerController>();
     }
@@ -46,7 +69,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     Vector3 GetRandomValidSpawnPosition()
     {
         // Collect all valid spawn positions
-        var validPositions = new System.Collections.Generic.List<Vector3>();
+        var validPositions = new List<Vector3>();
 
         int columns = WorldManager.worldGrid.GetLength(0);
         int rows = WorldManager.worldGrid.GetLength(1);
