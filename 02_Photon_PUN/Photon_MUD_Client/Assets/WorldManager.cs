@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldManager : MonoBehaviourPun
+public class WorldManager : MonoBehaviourPunCallbacks
 {
     public GameObject border;
     public GameObject path;
@@ -16,19 +16,22 @@ public class WorldManager : MonoBehaviourPun
     private int columns = 13;
     public static int[,] worldGrid;
 
-    void Start()
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            photonView.RPC("RPC_CreateWorld", RpcTarget.AllBuffered);
-        }
-    }
+    //public override void OnJoinedRoom()
+    //{
+    //    if (PhotonNetwork.IsMasterClient)
+    //    {
+    //        photonView.RPC("RPC_CreateWorld", RpcTarget.AllBuffered);
+    //    }
+    //}
 
     [PunRPC]
     void RPC_CreateWorld()
     {
+        Debug.Log("RPC_CreateWorld is called");
+        Debug.Log("Building the world...");
         worldGrid = GenerateWorldGrid();
         BuildWorld();
+        Debug.Log("World built successfully.");
     }
 
     int[,] GenerateWorldGrid()
