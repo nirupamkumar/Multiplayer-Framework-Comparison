@@ -522,8 +522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32243775fd668cd4f9841879201b5fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 5409298187635634715, guid: e6993f55a53a5e148befb7318a1dd111, type: 3}
-  localPlayer: {fileID: 7042344732080740134, guid: e6993f55a53a5e148befb7318a1dd111, type: 3}
+  playerPrefab: {fileID: 5409298187635634715, guid: 23b0cef6914b8fd4bb83b7ac18fa237a, type: 3}
+  localPlayer: {fileID: 7656445140528680604, guid: 23b0cef6914b8fd4bb83b7ac18fa237a, type: 3}
   healthText: {fileID: 230402661}
   attackText: {fileID: 32590522}
   speedText: {fileID: 1522275625}
