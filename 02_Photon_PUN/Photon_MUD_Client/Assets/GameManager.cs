@@ -30,15 +30,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        // Spawn the player
-        if (!localPlayer)
-        {
-            SpawnPlayer();
-        }
-        else
-        {
-            Debug.LogError("Player not found");
-        }
+        SpawnPlayer();
 
         Debug.Log("Joined room.");
     }
