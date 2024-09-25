@@ -24,6 +24,30 @@ public class WorldManager : MonoBehaviourPunCallbacks
     //    }
     //}
 
+    void Start()
+    {
+        StartCoroutine(WaitForSeedAndGenerateWorld());
+    }
+
+    IEnumerator WaitForSeedAndGenerateWorld()
+    {
+        while (!PhotonNetwork.InRoom || !PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("WorldSeed"))
+        {
+            yield return null;
+        }
+
+        int seed = (int)PhotonNetwork.CurrentRoom.CustomProperties["WorldSeed"];
+        GenerateAndBuildWorld(seed);
+    }
+
+    void GenerateAndBuildWorld(int seed)
+    {
+        Debug.Log("WorldManager: Generating world with seed " + seed);
+        Random.InitState(seed);
+        worldGrid = GenerateWorldGrid();
+        BuildWorld();
+    }
+
     [PunRPC]
     void RPC_CreateWorld()
     {
