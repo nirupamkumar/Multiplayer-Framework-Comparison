@@ -6,12 +6,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    public static GameManager Instance;
+
     public GameObject playerPrefab;
     public PlayerController localPlayer;
 
     public Text healthText;
     public Text attackText;
     public Text speedText;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public override void OnJoinedRoom()
     {
@@ -30,9 +37,21 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        SpawnPlayer();
-
+        //SpawnPlayer();
+        StartCoroutine(WaitForWorldAndSpawnPlayer());
         Debug.Log("Joined room.");
+    }
+
+    private IEnumerator WaitForWorldAndSpawnPlayer()
+    {
+        while (WorldManager.worldGrid == null)
+        {
+            Debug.Log("GameManager: Waiting for worldGrid to be initialized...");
+            yield return null; 
+        }
+
+        Debug.Log("GameManager: worldGrid is initialized. Spawning player.");
+        SpawnPlayer();
     }
 
     void Update()
