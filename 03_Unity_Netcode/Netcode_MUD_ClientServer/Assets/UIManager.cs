@@ -7,9 +7,9 @@ using Unity.Netcode;
 public class UIManager : MonoBehaviour
 {
     [Header("UI Panels")]
-    public GameObject connectPanel;  // Panel containing the name field and connect button
-    public GameObject chatPanel;     // Panel containing chat input and chat display
-    public GameObject statsPanel;    // Panel containing player stats like health, attack, and speed
+    public GameObject connectPanel;
+    public GameObject chatPanel;
+    public GameObject statsPanel;
 
     [Header("UI Elements")]
     public Button connectButton;
@@ -23,10 +23,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        // Assign button click events
         sendButton.onClick.AddListener(OnSendButtonClicked);
 
-        // Disable chat and stats initially
         chatPanel.SetActive(false);
         statsPanel.SetActive(false);
     }
@@ -58,7 +56,7 @@ public class UIManager : MonoBehaviour
         if (!string.IsNullOrEmpty(chatInputField.text))
         {
             SendMessageToServer(chatInputField.text);
-            chatInputField.text = ""; // Clear input field after sending
+            chatInputField.text = "";
         }
     }
 
