@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Prefabs")]
     public GameObject playerPrefab;
     public GameObject pathPrefab;
     public GameObject wallPrefab;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject attackPrefab;
     public GameObject speedPrefab;
 
+    [Header("World Grid")]
     public int[] worldData = new int[] {1,1,1,1,1,1,1,1,1,1,1,1,1,
                                        1,0,0,0,0,0,0,0,0,0,0,0,1,
                                        1,0,0,0,2,2,2,0,3,0,2,0,1,
@@ -67,14 +69,12 @@ public class GameManager : MonoBehaviour
     private void CreateWorld()
     {
         Debug.Log("GameManager: Initializing worldGrid...");
-
-        // Assuming worldData is already set, transform it to a 2D array
         worldGrid = Transform1DArrayTo2DArray(worldData, columns, rows);
 
         if (worldGrid != null)
         {
             Debug.Log("GameManager: worldGrid successfully initialized.");
-            OnWorldInitialized?.Invoke(); // Trigger the event
+            OnWorldInitialized?.Invoke();
         }
         else
         {
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
                     var networkObject = instantiatedObj.GetComponent<NetworkObject>();
                     if (networkObject != null)
                     {
-                        networkObject.Spawn(); // NetworkObject.Spawn() ensures the object is visible on clients
+                        networkObject.Spawn();
                     }
                     else
                     {
