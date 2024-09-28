@@ -10,14 +10,12 @@ public static class Logger
 
     static Logger()
     {
-        // Create the directory if it doesn't exist
         string directoryPath = Path.GetDirectoryName(logFilePath);
         if (!Directory.Exists(directoryPath))
         {
             Directory.CreateDirectory(directoryPath);
         }
 
-        // Initialize the log file
         using (StreamWriter writer = new StreamWriter(logFilePath, true))
         {
             writer.WriteLine($"Log initialized at {DateTime.Now}");
