@@ -32,19 +32,13 @@ public class GameNetManager : MonoBehaviour
     {
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
-            // Create a custom GUIStyle for the button
             GUIStyle buttonStyle = new GUIStyle(GUI.skin.button);
             buttonStyle.fontSize = 30;
-            buttonStyle.alignment = TextAnchor.MiddleCenter; // Ensure text is centered
+            buttonStyle.alignment = TextAnchor.MiddleCenter;
 
-            // Store GUILayout.Height in a variable for reuse
             GUILayoutOption buttonHeight = GUILayout.Height(50);
-
             GUILayout.BeginArea(new Rect(10, 10, 300, 300));
 
-            // Use the buttonHeight variable instead of repeating GUILayout.Height(50)
-            //if (GUILayout.Button("Start Host", buttonStyle, buttonHeight))
-            //    StartHost();
             if (GUILayout.Button("Start Client", buttonStyle, buttonHeight))
                 StartClient();
             if (GUILayout.Button("Start Server", buttonStyle, buttonHeight))
