@@ -44,13 +44,6 @@ public class UIManager : MonoBehaviour
         statsPanel.SetActive(true);
     }
 
-    private void OnConnectButtonClicked()
-    {
-        // Attempt to start as client
-        //NetworkManager.Singleton.StartClient();
-        //ToggleChatUI(true); // Enable chat UI on connect
-    }
-
     private void OnSendButtonClicked()
     {
         if (!string.IsNullOrEmpty(chatInputField.text))
@@ -62,7 +55,6 @@ public class UIManager : MonoBehaviour
 
     private void SendMessageToServer(string message)
     {
-        // Use a client RPC to send messages from the client to the server
         if (NetworkManager.Singleton.IsClient)
         {
             var localPlayer = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
