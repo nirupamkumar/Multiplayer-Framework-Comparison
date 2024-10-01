@@ -55,21 +55,16 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
     void TryMovePlayer(Vector3 dir)
     {
         Vector3 targetPosition = transform.position + dir;
-
-        // Check if the target position is within the world grid
         MapLegend tileType = WorldManager.GetTileTypeAtPosition(targetPosition);
 
-        // Only allow movement onto valid tiles
         if (tileType == MapLegend.Tile || tileType == MapLegend.Health || tileType == MapLegend.Attack || tileType == MapLegend.Speed)
         {
-            // Handle pickups
             HandleTileEffect(tileType);
             RotatePlayer(dir);
             MovePlayer(targetPosition);
         }
         else
         {
-            // Cannot move onto this tile
             Debug.Log("Cannot move onto this tile.");
         }
     }
@@ -84,6 +79,7 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
 
     void MovePlayer(Vector3 targetPosition)
     {
+        CustomLogger.Instance.Log("Player " + PhotonNetwork.NickName + " moving from " + transform.position + " to " + targetPosition);
         isMoving = true;
         StartCoroutine(LerpPosition(targetPosition, 0.2f));
     }
@@ -97,7 +93,6 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
         while (time < duration)
         {
             transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
-            // Optionally, smooth the rotation
             transform.rotation = Quaternion.Lerp(startRotation, targetRotation, time / duration);
 
             time += Time.deltaTime;
@@ -114,23 +109,25 @@ public class PlayerController : MonoBehaviourPun, IPunObservable
         if (tileType == MapLegend.Health)
         {
             health += 50f;
+            CustomLogger.Instance.Log("Player " + PhotonNetwork.NickName + " picked up Health. New Health: " + health);
             Debug.Log("Picked up Health!");
         }
         else if (tileType == MapLegend.Attack)
         {
             attack += 10f;
+            CustomLogger.Instance.Log("Player " + PhotonNetwork.NickName + " picked up Attack. New Attack: " + attack);
             Debug.Log("Picked up Attack!");
         }
         else if (tileType == MapLegend.Speed)
         {
             speed += 5f;
+            CustomLogger.Instance.Log("Player " + PhotonNetwork.NickName + " picked up Speed. New Speed: " + speed);
             Debug.Log("Picked up Speed!");
         }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        // Sync player data
         if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
