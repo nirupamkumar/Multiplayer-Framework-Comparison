@@ -39,5 +39,6 @@ public class ChatManager : MonoBehaviourPun
     void RPC_ReceiveChatMessage(string senderName, string message)
     {
         chatDisplay.text += $"\n{senderName}: {message}";
+        CustomLogger.Instance.Log("Chat Message from " + senderName + ": " + message);
     }
 }
