@@ -3,28 +3,66 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-public static class CustomLogger
+public class CustomLogger: MonoBehaviour
 {
-    private static string logFilePath = Application.persistentDataPath + "/PhotonGameLogs.txt";
+    private static CustomLogger _instance;
+    private string logFilePath;
 
-    public static void WriteLog(string message)
+    public static CustomLogger Instance
     {
-        string logMessage = $"{System.DateTime.Now}: {message}";
-
-        Debug.Log(logMessage); // Log to Unity Console
-
-        // Write to a log file
-        using (StreamWriter writer = new StreamWriter(logFilePath, true))
+        get
         {
-            writer.WriteLine(logMessage);
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<CustomLogger>();
+
+                if (_instance == null)
+                {
+                    GameObject loggerObject = new GameObject("Logger");
+                    _instance = loggerObject.AddComponent<CustomLogger>();
+                    DontDestroyOnLoad(loggerObject);
+                }
+            }
+            return _instance;
         }
     }
 
-    public static void ClearLog()
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            logFilePath = Path.Combine(Application.persistentDataPath, "GameLog.txt");
+            File.WriteAllText(logFilePath, "Game Log Started at " + System.DateTime.Now + "\n");
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Log(string message)
+    {
+        string timeStampedMessage = "[" + System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "] " + message;
+        Debug.Log(timeStampedMessage); 
+
+        try
+        {
+            File.AppendAllText(logFilePath, timeStampedMessage + "\n");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Logger: Failed to write to log file. Exception: " + e.Message);
+        }
+    }
+
+    public void ClearLog()
     {
         if (File.Exists(logFilePath))
         {
-            File.Delete(logFilePath); // Clear the existing log file
+            File.Delete(logFilePath);
         }
     }
 }
