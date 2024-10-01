@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        // Initiate world creation
         if (PhotonNetwork.IsMasterClient)
         {
             GameObject worldManagerObject = GameObject.Find("WorldManager");
@@ -37,7 +36,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        //SpawnPlayer();
         StartCoroutine(WaitForWorldAndSpawnPlayer());
         Debug.Log("Joined room.");
     }
@@ -56,10 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (localPlayer)
-        {
-            UpdateStatsTexts();
-        }
+        if (localPlayer) UpdateStatsTexts();
     }
 
     private void UpdateStatsTexts()
@@ -79,7 +74,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     Vector3 GetRandomValidSpawnPosition()
     {
-        // Collect all valid spawn positions
         var validPositions = new List<Vector3>();
 
         int columns = WorldManager.worldGrid.GetLength(0);
@@ -97,7 +91,6 @@ public class GameManager : MonoBehaviourPunCallbacks
             }
         }
 
-        // Choose a random position from the list
         if (validPositions.Count > 0)
         {
             int index = Random.Range(0, validPositions.Count);
@@ -105,7 +98,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            // Fallback position if no valid positions found
             return Vector3.zero;
         }
     }
