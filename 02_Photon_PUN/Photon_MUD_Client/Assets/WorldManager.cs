@@ -16,14 +16,6 @@ public class WorldManager : MonoBehaviourPunCallbacks
     private int columns = 13;
     public static int[,] worldGrid;
 
-    //public override void OnJoinedRoom()
-    //{
-    //    if (PhotonNetwork.IsMasterClient)
-    //    {
-    //        photonView.RPC("RPC_CreateWorld", RpcTarget.AllBuffered);
-    //    }
-    //}
-
     void Start()
     {
         StartCoroutine(WaitForSeedAndGenerateWorld());
@@ -42,10 +34,12 @@ public class WorldManager : MonoBehaviourPunCallbacks
 
     void GenerateAndBuildWorld(int seed)
     {
+        CustomLogger.Instance.Log("WorldManager: Generating world with seed " + seed);
         Debug.Log("WorldManager: Generating world with seed " + seed);
         Random.InitState(seed);
         worldGrid = GenerateWorldGrid();
         BuildWorld();
+        CustomLogger.Instance.Log("WorldManager: World generated successfully.");
     }
 
     [PunRPC]
@@ -118,7 +112,6 @@ public class WorldManager : MonoBehaviourPunCallbacks
         }
     }
 
-    // Method to check the tile type at a given position
     public static MapLegend GetTileTypeAtPosition(Vector3 position)
     {
         int x = Mathf.RoundToInt(position.x);
@@ -130,7 +123,6 @@ public class WorldManager : MonoBehaviourPunCallbacks
         }
         else
         {
-            // Return Wall as default for out-of-bounds
             return MapLegend.Wall; 
         }
     }
