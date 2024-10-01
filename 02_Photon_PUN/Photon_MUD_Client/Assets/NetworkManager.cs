@@ -43,7 +43,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void JoinChatroom()
     {
-        //Debug.Log("Joined room with seed: " + PhotonNetwork.CurrentRoom.CustomProperties["WorldSeed"]);
         string playerName = nameField.text;
 
         if (string.IsNullOrEmpty(playerName))
@@ -61,6 +60,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         //PhotonNetwork.JoinOrCreateRoom("MUDRoom", new RoomOptions { MaxPlayers = 4 }, TypedLobby.Default);
+        CustomLogger.Instance.Log("Connected to Master Server as " + PhotonNetwork.NickName);
         CreateOrJoinRoom();
     }
 
@@ -69,11 +69,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         string roomName = "MUDRoom";
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 10;
-
-        //if (!PhotonNetwork.InLobby)
-        //{
-        //    PhotonNetwork.JoinLobby();
-        //}
 
         int worldSeed = Random.Range(int.MinValue, int.MaxValue);
         ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable();
@@ -86,22 +81,26 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        CustomLogger.Instance.Log("Joined room: " + PhotonNetwork.CurrentRoom.Name + " as " + PhotonNetwork.NickName);
         chatUI.SetActive(true);
         statsUI.SetActive(true);
 
         if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("WorldSeed"))
         {
             int seed = (int)PhotonNetwork.CurrentRoom.CustomProperties["WorldSeed"];
+            CustomLogger.Instance.Log("World Seed: " + seed);
             Debug.Log("Joined room with seed: " + seed);
         }
         else
         {
+            CustomLogger.Instance.Log("WorldSeed not found in room properties.");
             Debug.LogWarning("WorldSeed not found in room properties.");
         }
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+        CustomLogger.Instance.Log("Disconnected from server. Reason: " + cause);
         connectUI.SetActive(true);
 
         chatUI.SetActive(false);
