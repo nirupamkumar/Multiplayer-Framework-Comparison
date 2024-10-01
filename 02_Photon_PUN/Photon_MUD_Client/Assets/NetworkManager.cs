@@ -98,6 +98,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        CustomLogger.Instance.Log("Player " + otherPlayer.NickName + " has left the room.");
+    }
+
+
     public override void OnDisconnected(DisconnectCause cause)
     {
         CustomLogger.Instance.Log("Disconnected from server. Reason: " + cause);
