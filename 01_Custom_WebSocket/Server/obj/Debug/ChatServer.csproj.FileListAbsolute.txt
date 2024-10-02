@@ -61,3 +61,11 @@ D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.
 D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\ChatServer.csproj.CopyComplete
 D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\MUDServer.exe
 D:\Unity Projects\Multiplayer LO's\LO3 - MUD\Server\obj\Debug\MUDServer.pdb
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\bin\Debug\MUDServer.exe.config
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\bin\Debug\MUDServer.exe
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\bin\Debug\MUDServer.pdb
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\obj\Debug\ChatServer.csproj.AssemblyReference.cache
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\obj\Debug\ChatServer.csproj.Up2Date
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\obj\Debug\MUDServer.exe
+D:\Unity Projects\Graduation Thesis\01_Custom_WebSocket\Server\obj\Debug\MUDServer.pdb
