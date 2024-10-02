@@ -1,26 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Unity Projects\\LO3 - MUD\\Server\\",
+  "WorkspaceRootPath": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\LO3 - MUD\\Server\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|d:\\unity projects\\lo3 - mud\\server\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\LO3 - MUD\\Server\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\LO3 - MUD\\Server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|d:\\unity projects\\graduation thesis\\01_custom_websocket\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\LO3 - MUD\\Server\\app1.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:app1.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,70 +26,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Logger.cs",
-              "DocumentMoniker": "D:\\Unity Projects\\LO3 - MUD\\Server\\Logger.cs",
+              "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Logger.cs",
               "RelativeDocumentMoniker": "Logger.cs",
-              "ToolTip": "D:\\Unity Projects\\LO3 - MUD\\Server\\Logger.cs",
+              "ToolTip": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Logger.cs",
               "RelativeToolTip": "Logger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2023-07-20T11:06:20.336Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "App1.config",
-              "DocumentMoniker": "D:\\Unity Projects\\LO3 - MUD\\Server\\App1.config",
-              "RelativeDocumentMoniker": "App1.config",
-              "ToolTip": "D:\\Unity Projects\\LO3 - MUD\\Server\\App1.config",
-              "RelativeToolTip": "App1.config",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-08-18T19:03:08.596Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Unity Projects\\LO3 - MUD\\Server\\Program.cs",
+              "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Unity Projects\\LO3 - MUD\\Server\\Program.cs",
+              "ToolTip": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAACwBAAAAAAAAAAAcwEsBAAABAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-07-20T11:06:20.228Z"
+              "WhenOpened": "2023-07-20T11:06:20.228Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Util.cs",
-              "DocumentMoniker": "D:\\Unity Projects\\LO3 - MUD\\Server\\Util.cs",
+              "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Util.cs",
               "RelativeDocumentMoniker": "Util.cs",
-              "ToolTip": "D:\\Unity Projects\\LO3 - MUD\\Server\\Util.cs",
+              "ToolTip": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Util.cs",
               "RelativeToolTip": "Util.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAABAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-07-20T11:06:20.337Z"
+              "WhenOpened": "2023-07-20T11:06:20.337Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "App.config",
-              "DocumentMoniker": "D:\\Unity Projects\\LO3 - MUD\\Server\\App.config",
+              "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\App.config",
               "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "D:\\Unity Projects\\LO3 - MUD\\Server\\App.config",
+              "ToolTip": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\App.config",
               "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2023-07-20T16:49:20.39Z",
               "EditorCaption": ""
