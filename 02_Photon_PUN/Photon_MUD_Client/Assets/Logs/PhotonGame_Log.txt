@@ -1,0 +1,8 @@
+Game Log Started at 03/10/2024 22:58:27
+[2024-10-03 22:58:33.856] Connected to Master Server as Player1
+[2024-10-03 22:58:34.214] Joined room: MUDRoom as Player1
+[2024-10-03 22:58:34.216] World Seed: 547123581
+[2024-10-03 22:58:34.219] WorldManager: Generating world with seed 547123581
+[2024-10-03 22:58:34.223] WorldManager: World generated successfully.
+[2024-10-03 22:58:36.135] Player Player1 moving from (8.00, 1.00, 0.00) to (7.00, 1.00, 0.00)
+[2024-10-03 22:59:20.910] Disconnected from server. Reason: ApplicationQuit
