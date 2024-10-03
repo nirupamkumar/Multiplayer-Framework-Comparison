@@ -18,7 +18,7 @@ public class CustomLogger: MonoBehaviour
 
                 if (_instance == null)
                 {
-                    GameObject loggerObject = new GameObject("Logger");
+                    GameObject loggerObject = new GameObject("CustomLogger");
                     _instance = loggerObject.AddComponent<CustomLogger>();
                     DontDestroyOnLoad(loggerObject);
                 }
@@ -34,7 +34,21 @@ public class CustomLogger: MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(gameObject);
 
-            logFilePath = Path.Combine(Application.persistentDataPath, "GameLog.txt");
+            string logFolder;
+
+        #if UNITY_EDITOR
+            logFolder = Path.Combine(Application.dataPath, "Logs");
+        #else
+            logFolder = Path.Combine(Application.persistentDataPath, "Logs");
+        #endif
+
+            if (!Directory.Exists(logFolder))
+            {
+                Directory.CreateDirectory(logFolder);
+            }
+
+            logFilePath = Path.Combine(logFolder, "PhotonGame_Log.txt");
+            Debug.Log("Logger: Log file path is " + logFilePath);
             File.WriteAllText(logFilePath, "Game Log Started at " + System.DateTime.Now + "\n");
         }
         else if (_instance != this)
