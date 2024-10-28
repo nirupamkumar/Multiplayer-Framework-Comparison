@@ -3,7 +3,11 @@
   "WorkspaceRootPath": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|d:\\unity projects\\graduation thesis\\01_custom_websocket\\server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|d:\\unity projects\\graduation thesis\\01_custom_websocket\\server\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -13,10 +17,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{3597E7F2-92D9-41E3-B3CB-E352C7731995}|ChatServer.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Logger.cs",
               "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Logger.cs",
               "RelativeDocumentMoniker": "Logger.cs",
@@ -38,12 +38,11 @@
               "RelativeToolTip": "Logger.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-07-20T11:06:20.336Z",
-              "EditorCaption": ""
+              "WhenOpened": "2023-07-20T11:06:20.336Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -51,12 +50,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-07-20T11:06:20.228Z",
-              "EditorCaption": ""
+              "WhenOpened": "2023-07-20T11:06:20.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Util.cs",
               "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\Util.cs",
               "RelativeDocumentMoniker": "Util.cs",
@@ -64,18 +62,17 @@
               "RelativeToolTip": "Util.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2023-07-20T11:06:20.337Z",
-              "EditorCaption": ""
+              "WhenOpened": "2023-07-20T11:06:20.337Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\App.config",
               "RelativeDocumentMoniker": "App.config",
               "ToolTip": "D:\\Unity Projects\\Graduation Thesis\\01_Custom_WebSocket\\Server\\App.config",
               "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAA6AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2023-07-20T16:49:20.39Z",
               "EditorCaption": ""
